@@ -1,0 +1,109 @@
+<style>
+  
+  #user_popup_options {
+    display: none;
+    position: absolute;
+    top: 50px;
+  }
+
+  #user_popup_options a {
+    text-decoration: none;
+    color: #000;
+  }
+
+  #user_popup_options a:hover {
+    color: rgba(86, 119, 252, 1);
+    transition: .25s ease;
+  }
+
+  .user_icon_parent {
+    position: relative;
+  }
+
+  .user_icon_parent:hover #user_popup_options{
+    display: block;
+  }
+
+  
+</style>
+
+<header>
+  <nav class="display-flex align-items-center">
+    <div id="logo">
+      <a href="/"><img src="https://cyberstore.qodeinteractive.com/wp-content/uploads/2017/09/logo-default.png" alt="cyberstore_logo"></a>
+    </div>
+
+    <img id="menu" src="/icons/menu.svg" alt="">
+
+    <ul id="right_nav" class="display-flex align-items-center">
+
+      <li>
+        <form action="/" class="display-flex">
+          <div class="select_categories_container">
+            <select name="" id="" class="select_categories">
+              <option value="">All Categories</option>
+              <option value="">Mobile Phones</option>
+              <option value="">Laptops</option>
+              <option value="">Accessories</option>
+            </select>
+          </div>
+          <input class="search_input" type="search" name="" id="" placeholder="Search for Product...">
+          <div class="search_icon_container" onClick="this.parentNode.submit()">
+            <img src="/icons/search.svg" alt="">
+          </div>
+        </form>
+      </li>
+
+      <li class="user_icon_parent d-flex justify-content-center align-items-center" style="height: 52px;">
+        <a ><img src="/icons/user.svg" alt=""></a>
+        <div id="user_popup_options" style="width: 15rem; padding: 1rem 1rem;" class="text-center bg-light fs-4 border">
+          <a href="/admin-panel" class="mx-auto">Admin Panel</a>
+        </div>
+      </li>
+
+      <li>
+        <img src="/icons/shopping-cart.svg" alt="">
+        <span class="cart_total">($0)</span>
+      </li>
+    </ul>
+  </nav>
+
+  <nav id="right_side_menu">
+    <img id="cancel_icon" src="/icons/cancel.png" alt="">
+    <ul class="display-flex flex-direction-column">
+      <li>Home</li>
+      <li>Pages</li>
+      <li>
+        <div class="display-flex align-items-center" id="shop_submenu">
+          Shop 
+          <img src="/icons/arrow-down.svg" style="width: 2rem;" alt="">
+        </div>
+        <ul class="shop_submenu_options">
+          <li class="display-flex flex-direction-column">
+            Products Type
+            <a href="">Mobiles</a>
+            <a href="">Laptops</a>
+            <a href="">Accesories</a>
+          </li>
+        </ul>
+
+      </li>
+    </ul>
+    <div id="bottom_panel">
+      <div>
+        <img src="/icons/user.svg" alt="">
+      </div>
+      <div>
+        <img src="/icons/search.svg" style="filter : invert(100%)" alt="">
+      </div>
+      <div>
+        <img src="/icons/shopping-cart.svg"  alt="">
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script>
+
+</script>
+

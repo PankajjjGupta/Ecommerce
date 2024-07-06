@@ -1,0 +1,46 @@
+<style>
+    * {
+        font-size: 1.8rem;
+    }
+
+</style>
+<h1 class="text-center mt-5 mb-5">Add a product</h1>
+<form action="/add-products?_method=POST" method="POST" class="px-5 m-auto needs-validation" novalidate>
+    <div class="mb-4">
+        <label for="name" class="form-label fs-3">Product Name :</label>
+        <input required name="product[name]" type="text" class="form-control" id="name" style="font-size: 1.8rem;" placeholder="Product Name">
+    </div>
+    <div class="mb-4">
+        <label for="price" class="form-label fs-3">Product Price :</label>
+        <div class="input-group mb-3">
+            <span class="input-group-text fs-3" id="basic-addon1">$</span>
+            <input required name="product[price]" type="text" id="price" class="form-control" placeholder="Product Prize" style="font-size: 1.8rem;" aria-label="Username" aria-describedby="basic-addon1">
+          </div>
+        </div>
+    <div class="mb-4">
+        <label for="stock" class="form-label fs-3">Product Stock (QTY) :</label>
+        <input required type="text" class="form-control" name="product[stock]" id="stock" style="font-size: 1.8rem;" placeholder="Product Stock">
+    </div>
+    <div class="mb-4">
+        <label for="image" class="form-label fs-3">Product Image(URL) :</label>
+        <input required type="url" class="form-control" id="image" name="product[image]" style="font-size: 1.8rem;" placeholder="Product Image URL">
+    </div>
+    <div class="mb-4">
+        <label for="category" class="form-label fs-3">Product Category :</label>
+        <select required id="validationCustom04" name="product[category]" class="form-select form-select-lg mb-3" aria-label="Large select example"  style="font-size: 1.8rem;" >
+            <option selected disabled value="">Choose a Category for Product</option>
+            <% for(let category of Categories) { %>
+                <% if(category !== "Products" && category !== "Mobile Phones") { %>
+                <option value="<%= category %>"><%= category %></option>
+                <% } %>
+            <% } %>
+          </select>
+    </div>
+    <div class="mb-4">
+        <label for="description" class="form-label fs-3">Product Description :</label>
+        <textarea required class="form-control fs-3" name="product[description]" id="description" rows="4"></textarea>
+    </div>
+    <button class="btn btn-success px-3 py-2 mb-5 fs-4">Add Product</button>
+</form>
+
+<script src="../js/validation.js"></script>

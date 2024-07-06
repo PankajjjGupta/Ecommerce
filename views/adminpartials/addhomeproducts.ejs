@@ -1,0 +1,67 @@
+<h1 class="text-center my-5">Add Home Products</h1>
+<table class="table fs-3">
+    <thead>
+        <tr>
+        <th scope="col">Sr.No</th>
+        <th scope="col">Category</th>
+        <th scope="col">Name</th>
+        <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <% data.map((product, index) => { %>
+        <tr>
+            <th scope="row"><%= index + 1 %></th>
+            <td><%= product.category %></td>
+            <td><a href="/products/<%= product._id %>"><%= product.name %></a></td>
+            <td>
+                <form>
+                    <input type="checkbox" class="form-check-input" name="<%= product.name %>" value="<%= product._id %>" id="" 
+                    <% for(let homeProducts of HomeProduct.products) { %>
+                        <% if(homeProducts._id.equals(product._id)) { %>
+                            <%= "checked" %>
+                        <% } %>
+                    <% } %>
+                    >
+                </form>
+            </td>
+            </tr>
+        <% }) %>
+        <tr>
+            <th scope="row"></th>
+            <td></td>
+            <td></td>
+            <td>
+            <form id="submit_button_form" action="/products/addhome?_method=POST" method="POST">
+                <button class="btn btn-success fs-4">Submit</button>
+            </form>
+            </td>
+        </tr>
+</table>
+
+<script>
+    const submitForm = document.querySelectorAll("#submit_button_form")[0];
+    const checkboxes = document.querySelectorAll("input[type=checkbox]");
+    async function sendData() {
+        const formData = new FormData();
+        Array.from(checkboxes).map(e => {
+           if(e.checked) {
+            formData.append(e.name, e.value)
+           }
+        });
+        const data = new URLSearchParams(formData);
+        const res = await fetch("http://localhost:3000/products/addhome", {
+            method : "POST",
+            body : data
+        })
+        const response = await res.json();
+        if(response.success) {
+            location.reload();
+        }
+    }
+    submitForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        sendData()
+    })
+</script>

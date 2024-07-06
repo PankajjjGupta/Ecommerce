@@ -1,0 +1,27 @@
+<h1 class="text-center my-4">All Products</h1>
+
+<table class="table fs-3">
+    <thead>
+        <tr>
+        <th scope="col">Sr.No</th>
+        <th scope="col">Category</th>
+        <th scope="col">Name</th>
+        <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    
+
+        <% data.map((product, index) => { %>
+        <tr>
+            <th scope="row"><%= index + 1 %></th>
+            <td><%= product.category %></td>
+            <td><a href="/products/<%= product._id %>"><%= product.name %></a></td>
+            <td>
+                <form action="/products/<%= product._id  %>?_method=DELETE" method="POST">
+                    <button class="btn btn-danger fs-3">Delete</button>
+                </form>
+            </td>
+            </tr>
+        <% }) %>
+</table>

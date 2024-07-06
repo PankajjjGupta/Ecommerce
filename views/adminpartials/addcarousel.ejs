@@ -1,0 +1,31 @@
+<style>
+    * {
+        font-size: 1.8rem;
+    }
+
+</style>
+<h1 class="text-center mt-5 mb-5">Add a Carousel Product</h1>
+<form action="/add-carousel-products?_method=POST" method="POST" class="px-5 m-auto needs-validation" novalidate>
+    <div class="mb-4">
+        <label for="title" name="product[title]" class="form-label fs-3">Product Title :</label>
+        <input type="text" class="form-control" id="title" name="product[title]" style="font-size: 1.8rem;" placeholder="Product Title" required>
+        <div class="invalid-feedback">
+            Please provide a product title.
+          </div>
+    </div>
+    <div class="mb-4">
+        <label for="image" name="product[image]" class="form-label fs-3">Product Image(URL) :</label>
+        <input type="url" class="form-control" id="image" name="product[image]" style="font-size: 1.8rem;" placeholder="Product Image URL" required>
+        <div class="invalid-feedback">
+            Please provide a product image.
+          </div>
+    </div>
+    <div class="mb-4">
+        <label for="description" name="product[description]" class="form-label fs-3">Product Description :</label>
+        <textarea id="description" class="form-control fs-3" name="product[description]" rows="4" required></textarea>
+        <div class="invalid-feedback">
+            Please provide the product description.
+          </div>
+    </div>
+    <button class="btn btn-success px-3 py-2 mb-5 fs-4">Add Product</button>
+</form>

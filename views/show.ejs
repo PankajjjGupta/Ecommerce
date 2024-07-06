@@ -1,0 +1,83 @@
+<% layout("layouts/boilerplate") -%>
+
+<style>
+
+    .product img{
+        cursor: pointer;
+    }
+
+    .product_titles {
+        font-size: 2.6rem;
+        font-weight: 500;
+    }
+
+    .quantity_selector_container button {
+        padding: 0 3.8rem;
+        font-size: 1.35rem;
+        color: #fff;
+        background-color: rgba(86, 119, 252, 1);
+        font-weight: 500;
+    }
+
+    .quantity_selector {
+        font-weight: 100;
+        font-size: 1.3rem;
+        width: 18rem;
+        height: 5rem;
+    }
+
+
+
+
+</style>
+
+<div class="row my-5 product d-flex">
+    <div class="col-lg-6 mb-5 d-flex justify-content-center">
+        <img class="mx-auto" style="width: 90%; object-fit: contain;" src="<%= product.image %>" alt="">
+    </div>
+    <div class="col-lg-6 my-5 ps-5">
+        <div id="product_title" class="pb-4 border-bottom w-100">
+            <h2 class="product_titles"><%= product.name %></h2>
+            <h2 class="mt-4 product_titles">$<%= product.price %> <span class="mx-2" style="color: #15db00; font-weight: 400;"> <b id="stock_number" style="color: #15db00; font-weight: 400;" ><%= product.stock %></b> in stock</span></h2>
+        </div>
+
+        <div id="product_meta" class="mt-5 pe-4">
+            <h2>Description</h2>
+            <p class="text-muted fs-4 mt-4"><%= product.description %></p>
+            <div class="d-flex quantity_selector_container my-5">
+                <div class="quantity_selector border d-flex align-items-center justify-content-around">
+                    Quantity
+                    <div class="quantity_selector_controls">
+                        <img src="../icons/less-than.svg" alt="">
+                        <span id="quantity_number" style="color: #000;" >0</span>
+                        <img src="../icons/greater-than.svg" alt="">
+                    </div>
+                </div>
+                <button class="border border-0">Add To Cart</button>
+            </div>
+            <h4 >Category: <span class="text-black-50"><%= product.category %></span></h2>
+        </div>
+    </div>
+</div>
+
+<script>
+    // For Quantity Selector Increment and Decrement Function 
+    const incDecIcon = document.querySelectorAll(".quantity_selector_controls img");
+    const quantityNumber = document.querySelector("#quantity_number");
+    const inStock = document.querySelector("#stock_number");
+
+    for(let icon of incDecIcon) {
+        icon.addEventListener("click", (e) => {
+            if(e.target.nextElementSibling) {
+                if(quantityNumber.innerHTML != "0") {
+                    quantityNumber.innerHTML = (Number(quantityNumber.innerHTML) - 1);
+                }
+            }else {
+                if (quantityNumber.innerHTML != inStock.innerHTML) {
+                    quantityNumber.innerHTML = (Number(quantityNumber.innerHTML) + 1)
+                    
+                }
+            }
+        })
+    }
+</script>

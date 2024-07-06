@@ -1,0 +1,109 @@
+<% layout("layouts/boilerplate") -%>
+<style>
+    * {
+        font-family: "Montserrat", sans-serif !important;   
+    }
+    
+    #category_links a {
+        text-decoration: none;
+    }
+
+    #category_links ul li {
+        position: relative;
+        width: fit-content;
+        list-style: none;
+    }
+
+    #category_links ul li a {
+        color : #000;
+        text-decoration: none;
+    }
+
+    #category_links ul li::after {
+        content: "";
+        position: absolute;
+        background-color: rgba(86, 119, 252, 1);
+        height: 1.5px;
+        width: 0%;
+        left: 0;
+        bottom: 0px;
+        transition: all .25s ease;
+    }
+
+    #category_links ul li:hover::after,
+    #category_links li:hover a{  
+        color: rgba(86, 119, 252, 1);
+        width: 100%;
+    }
+
+    .margin-top-5 {
+        margin-top: 5rem;
+    }
+</style>
+<div class="row my-5" style="min-height: 60rem;">
+    <div id="category_links" class="col-md-3" style="padding : 4rem 3.5rem ;border: 1px solid #dadada; max-height: 40r;">
+        <h2 class="pb-5">Categories</h2>
+        <ul class="px-0">
+            <li class="py-2"><a href="/?category=featured" class="fs-4">Featured</a></li>
+            <li class="py-2"><a href="/?category=mobilephones" class="fs-4">Mobile Phones</a></li>
+            <% for(let category of Categories) { %>
+                <li class="py-2"><a href="/?category=<%= category.toLowerCase() %>" class="fs-4"><%= category %></a></li>
+            <% } %>
+        </ul>
+    </div>
+    <div class="col right-side">
+        <div class="row">
+
+            <!-- <div class="col-lg-4 col-sm-6 mb-5 px-5 px-sm-4 px-lg-5 position-relative border-end">
+                <a href="" class="card-subtitle text-muted fs-4">Category</a>
+                <img src="https://cyberstore.qodeinteractive.com/wp-content/uploads/2017/08/h1-slide-1-img-1.png" class="card-img-top margin-top-5 mb-3"  alt="...">
+                <div class="product_meta my-5">
+                    <h4 class="card-title mb-3 text-wrap"><a  style="text-decoration: none;" href="" class="text-black fs-4 fs-sm-3 ">Apple MacBook Pro With Touch Bar MF841DSN/A 13″</a></h4>
+                    <h3 class="card-text fs-2">$99</h3>
+                </div>
+                <div class="cart_icon bg-light d-flex rounded-circle position-absolute" style="width: 45px; height: 45px; right: 35px; bottom: 5px;">
+                    <img class="m-auto" src="./icons/shopping-cart.svg" alt="" style="filter: invert(50%); width: 20px;">
+                </div>
+            </div> -->
+
+            <% if(category == 'featured' || !category) { %>
+                <% Products.products.map(product => { %>
+                    <div class="col-lg-4 col-sm-6 mb-5 px-5 px-sm-4 px-lg-5 position-relative border-end">
+                        <a href="" class="card-subtitle text-muted fs-4"><%= product.category %></a>
+                        <div>
+                            <a class="d-flex justify-content-center" href="/products/<%= product._id %>"><img  src="<%= product.image %>" style="width: 25rem; height: 25rem; object-fit: contain;" class="card-img-top margin-top-3 mb-3 img-fluid"  alt="..."></a>
+                        </div>
+                        <div class="product_meta my-5">
+                            <h4 class="card-title mb-3 text-wrap"><a  style="text-decoration: none;" href="/products/<%= product._id %>" class="text-black fs-3 fs-sm-2"><%= product.name %></a></h4>
+                            <h3 class="card-text fs-2">$<%= product.price %></h3>
+                        </div>
+                        <div class="cart_icon bg-light d-flex rounded-circle position-absolute" style="width: 45px; height: 45px; right: 35px; bottom: 5px;">
+                            <img class="m-auto" src="./icons/shopping-cart.svg" alt="" style="filter: invert(50%); width: 20px;">
+                        </div>
+                    </div>
+                <% }) %>
+            <%  } else if(category == 'mobilephones' || category == 'android' || category == 'iphone' ||category == 'laptops' || category == 'accessories') { %>
+                <% if(Products.length) { %>
+                    <% Products.map(product => { %>
+                        <div class="col-lg-4 col-sm-6 mb-5 px-5 px-sm-4 px-lg-5 position-relative border-end">
+                            <a href="" class="card-subtitle text-muted fs-4"><%= product.category %></a>
+                            <div>
+                                <a class="d-flex justify-content-center" href="/products/<%= product._id %>"><img src="<%= product.image %>" class="card-img-top margin-top-3 mb-3 img-fluid" alt="..." style="width: 25rem; height: 25rem; object-fit: contain;"></a>
+                            </div>
+                            <div class="product_meta my-5">
+                                <h4 class="card-title mb-3 text-wrap"><a  style="text-decoration: none;" href="/products/<%= product._id %>" class="text-black fs-3 fs-sm-2"><%= product.name %></a></h4>
+                                <h3 class="card-text fs-2">$<%= product.price %></h3>
+                            </div>
+                            <div class="cart_icon bg-light d-flex rounded-circle position-absolute" style="width: 45px; height: 45px; right: 35px; bottom: 5px;">
+                                <img class="m-auto" src="./icons/shopping-cart.svg" alt="" style="filter: invert(50%); width: 20px;">
+                            </div>
+                        </div>
+                    <% }) %>
+                <% } else { %>
+                    <h2 class="text-center">No Products Available</h2>
+                <% } %>
+            <% }  %>
+                
+        </div>
+    </div>
+</div>
